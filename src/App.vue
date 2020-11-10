@@ -1,60 +1,63 @@
 <template>
   <v-app>
+    <!-- 通知 -->
+    <notifications group="default" animation-type="velocity">
+      <template slot="body" slot-scope="props">
+        <v-alert
+          :type="props.item.type"
+          class="ma-3 mb-0"
+          border="left"
+        >
+          <div class="d-flex align-center ml-3">
+            <div class="body-2 mr-auto">{{ props.item.text }}</div>
+          </div>
+        </v-alert>
+      </template>
+    </notifications>
+    <!-- アプリバー -->
     <v-app-bar
+      v-if="true"
       app
       color="primary"
       dark
+      dense
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+      <!-- 内容 -->
+      <h2>Arai Systems</h2>
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <!-- タブ定義 -->
+      <template v-slot:extension>
+        <v-tabs align-with-title>
+          <!-- タブ名 -->
+          <v-tab key="tab-1" to="/">HOME</v-tab>
+          <v-tab key="tab-2" to="/about">ABOUT</v-tab>
+          <!-- 表示内容 -->
+          <v-tab-item id="/">
+            <router-view v-if="activeTab === '/'" />
+          </v-tab-item>
+          <v-tab-item id="/about">
+            <router-view v-if="activeTab === '/abount'" />
+          </v-tab-item>
+        </v-tabs>
+      </template>
     </v-app-bar>
 
+    <!-- ルーティングコンテンツ -->
     <v-main>
-      <HelloWorld/>
+      <router-view class="ma-5" />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 
 export default {
   name: 'App',
-
-  components: {
-    HelloWorld
-  },
-
-  data: () => ({
-    //
-  })
+  data: function () {
+    return {
+      activeTab: ''
+    }
+  }
 }
 </script>

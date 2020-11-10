@@ -4,7 +4,13 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 
+import './mixins/utility'
+
+import Notifications from 'vue-notification'
+import velocity from 'velocity-animate'
+
 Vue.config.productionTip = false
+Vue.use(Notifications, { velocity })
 
 new Vue({
   router,
