@@ -46,7 +46,8 @@
                   depressed
                   color="primary"
                   type="submit"
-                >Login</v-btn>
+                  >Login</v-btn
+                >
               </v-card-actions>
             </v-form>
           </v-card>
@@ -78,8 +79,7 @@ export default {
     }
   }),
   methods: {
-    async doLogin () {
-    }
+    async doLogin () {}
   }
 }
 </script>
