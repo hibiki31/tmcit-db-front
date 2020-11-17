@@ -27,6 +27,16 @@
                 ></v-text-field>
 
                 <v-text-field
+                  v-model="formData.userId"
+                  :rules="[rules.required]"
+                  label="userId"
+                  name="userId"
+                  prepend-icon="mdi-account"
+                  required
+                  type="text"
+                ></v-text-field>
+
+                <v-text-field
                   v-model="formData.password"
                   :rules="[rules.required]"
                   id="password"
@@ -36,6 +46,7 @@
                   required
                   type="password"
                 ></v-text-field>
+
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
