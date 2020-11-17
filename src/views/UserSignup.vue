@@ -27,10 +27,10 @@
                 ></v-text-field>
 
                 <v-text-field
-                  v-model="formData.userId"
+                  v-model="formData.name"
                   :rules="[rules.required]"
-                  label="userId"
-                  name="userId"
+                  label="name"
+                  name="name"
                   prepend-icon="mdi-account"
                   required
                   type="text"
@@ -83,6 +83,7 @@ export default {
     isFormValid: false,
     formData: {
       userId: '',
+      name: '',
       password: ''
     },
     rules: {
