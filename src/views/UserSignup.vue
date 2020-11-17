@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="UserSignup">
     <v-container class="fill-height" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="4">
@@ -11,7 +11,7 @@
           </v-card>
           <v-card v-else class="elevation-12">
             <v-toolbar color="primary" dark>
-              <v-toolbar-title>Login</v-toolbar-title>
+              <v-toolbar-title>UserSignup</v-toolbar-title>
               <v-spacer></v-spacer>
             </v-toolbar>
             <v-form ref="form" v-model="isFormValid">
@@ -40,13 +40,13 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
-                  @click.prevent="doLogin"
+                  @click.prevent="doUserSignup"
                   :disabled="!isFormValid"
-                  :loading="isLoadingLogin"
+                  :loading="isLoadingUserSignup"
                   depressed
                   color="primary"
                   type="submit"
-                  >Login</v-btn
+                  >Signup</v-btn
                 >
               </v-card-actions>
             </v-form>
@@ -58,7 +58,7 @@
 </template>
 
 <style lang="scss">
-.Login {
+.UserSignup {
   > * {
     margin: auto;
   }
@@ -67,7 +67,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'UserSignup',
   data: () => ({
     isFormValid: false,
     formData: {
@@ -79,7 +79,7 @@ export default {
     }
   }),
   methods: {
-    async doLogin () {}
+    async doUserSignup () {}
   }
 }
 </script>
