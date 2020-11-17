@@ -31,6 +31,7 @@
         <v-tabs align-with-title>
           <!-- タブ名 -->
           <v-tab key="tab-1" to="/">HOME</v-tab>
+          <v-tab key="tab-1" to="/template">Template</v-tab>
           <v-tab key="tab-2" to="/about">ABOUT</v-tab>
           <!-- 表示内容 -->
           <v-tab-item id="/">
@@ -38,6 +39,9 @@
           </v-tab-item>
           <v-tab-item id="/about">
             <router-view v-if="activeTab === '/abount'" />
+          </v-tab-item>
+          <v-tab-item id="/template">
+            <router-view v-if="activeTab === '/template'" />
           </v-tab-item>
         </v-tabs>
       </template>
