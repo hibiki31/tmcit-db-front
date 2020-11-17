@@ -15,12 +15,12 @@ export default {
     return {
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: 'class',
           align: 'start',
           sortable: false,
           value: 'name'
         },
-        { text: 'Calories', value: 'calories' },
+        { text: '', value: 'calories' },
         { text: 'Fat (g)', value: 'fat' },
         { text: 'Carbs (g)', value: 'carbs' },
         { text: 'Protein (g)', value: 'protein' },
