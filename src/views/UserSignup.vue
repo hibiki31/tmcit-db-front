@@ -27,6 +27,16 @@
                 ></v-text-field>
 
                 <v-text-field
+                  v-model="formData.name"
+                  :rules="[rules.required]"
+                  label="name"
+                  name="name"
+                  prepend-icon="mdi-account"
+                  required
+                  type="text"
+                ></v-text-field>
+
+                <v-text-field
                   v-model="formData.password"
                   :rules="[rules.required]"
                   id="password"
@@ -36,6 +46,7 @@
                   required
                   type="password"
                 ></v-text-field>
+
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -72,6 +83,7 @@ export default {
     isFormValid: false,
     formData: {
       userId: '',
+      name: '',
       password: ''
     },
     rules: {
