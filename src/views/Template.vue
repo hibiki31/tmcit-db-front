@@ -21,6 +21,9 @@
           OPEN
         </v-btn>
     </v-card>
+    <v-card class="ma-10">
+        {{ usersData }}
+    </v-card>
   </div>
 </template>
 
@@ -32,6 +35,7 @@ export default {
   data: function () {
     return {
       apiData: [],
+      usersData: {},
       dialog: false
     }
   },
@@ -40,6 +44,11 @@ export default {
       .get('https://ipinfo.io/json?token=24248f247e1965')
       .then((response) => (
         this.apiData = response.data
+      ))
+    axios
+      .get('/users')
+      .then((response) => (
+        this.usersData = response.data
       ))
   },
   methods: {

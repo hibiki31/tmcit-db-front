@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 export default Axios.create({
-  baseURL: process.env.VUE_APP_API_HOST,
+  baseURL: 'http://aray.hibiki.work',
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest'
