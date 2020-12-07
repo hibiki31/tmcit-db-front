@@ -55,6 +55,8 @@
 </template>
 
 <script>
+import axios from '@/axios/index'
+import Cookies from 'js-cookie'
 
 export default {
   name: 'App',
@@ -62,6 +64,17 @@ export default {
     return {
       activeTab: ''
     }
+  },
+  async mounted () {
+    axios.interceptors.request.use(
+      (config) => {
+        config.headers.Authorization = 'Bearer ' + Cookies.get('token')
+        return config
+      },
+      (err) => {
+        return Promise.reject(err)
+      }
+    )
   }
 }
 </script>
