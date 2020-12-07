@@ -17,16 +17,6 @@
             <v-form ref="form" v-model="isFormValid">
               <v-card-text>
                 <v-text-field
-                  v-model="formData.userId"
-                  :rules="[rules.required]"
-                  label="userId"
-                  name="userId"
-                  prepend-icon="mdi-account"
-                  required
-                  type="text"
-                ></v-text-field>
-
-                <v-text-field
                   v-model="formData.name"
                   :rules="[rules.required]"
                   label="name"
@@ -47,6 +37,9 @@
                   type="password"
                 ></v-text-field>
 
+                <input type="checkbox" id="checkbox" v-model="formData.is_teacher">
+                <label for="checkbox">is_teacher</label>
+
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -57,6 +50,7 @@
                   depressed
                   color="primary"
                   type="submit"
+                  v-on:click="this.doUserSignup"
                   >Signup</v-btn
                 >
               </v-card-actions>
@@ -77,21 +71,37 @@
 </style>
 
 <script>
+import axios from '@/axios/index'
+
 export default {
   name: 'UserSignup',
   data: () => ({
     isFormValid: false,
     formData: {
-      userId: '',
       name: '',
-      password: ''
+      password: '',
+      is_teacher: false
     },
     rules: {
       required: (v) => !!v?.length
     }
   }),
   methods: {
-    async doUserSignup () {}
+    async doUserSignup () {
+      this.params = {
+        name: this.formData.name,
+        password: this.formData.password,
+        is_teacher: this.formData.is_teacher
+      }
+      await axios.post('http://aray.hibiki.work/users', this.params, {
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json'
+        }
+      }).then((response) => {
+        this.apiData = response.data
+      })
+    }
   }
 }
 </script>
