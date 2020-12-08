@@ -21,7 +21,7 @@
         </v-btn>
     </v-card>
     <v-card class="ma-10">
-        {{ usersData }}
+        {{ usersData.users[1] }}
     </v-card>
   </div>
 </template>
@@ -39,11 +39,6 @@ export default {
     }
   },
   mounted: async function () {
-    axios
-      .get('https://ipinfo.io/json?token=24248f247e1965')
-      .then((response) => (
-        this.apiData = response.data
-      ))
     axios
       .get('/users')
       .then((response) => (

@@ -1,17 +1,17 @@
 <template>
   <v-card class="pa-10">
-    {{id}}
+      {{questionsData}}
     <v-data-table
       :headers="headers"
       :items="problems"
       :items-per-page="10"
       class="elevation-1"
     >
-     <template v-slot:item.name="{ item }">
+     <!-- <template v-slot:item.name="{ item }">
      <v-btn :to="item.name">
        {{item.name}}
      </v-btn>
-     </template>
+     </template> -->
      <template v-slot:item.ProblemA="{ item }">
      <v-btn :to="item.ProblemA">
        {{item.ProblemA}}
@@ -38,16 +38,16 @@
      </v-btn>
      </template>
     </v-data-table>
-    <!-- <v-btn :to="{name: 'Submit'}" text>
-        <v-icon>Submit</v-icon>
-     </v-btn> -->
   </v-card>
 </template>
 
 <script>
+import axios from '@/axios/index'
 export default {
   data () {
     return {
+      apiData: [],
+      questiondata: {},
       id: this.$route.params.id,
       headers: [
         {
@@ -70,57 +70,16 @@ export default {
           ProblemC: { name: 'ProblemId', params: { id: 'problem' } },
           ProblemD: { name: 'ProblemId', params: { id: 'problem' } },
           ProblemE: { name: 'ProblemId', params: { id: 'problem' } }
-        },
-        {
-          name: '問題',
-          ProblemA: { name: 'ProblemId', params: { id: 'problem' } },
-          ProblemB: '問題記載',
-          ProblemC: '問題記載',
-          ProblemD: '問題記載',
-          ProblemE: '問題記載'
-        },
-        {
-          name: '問題',
-          ProblemA: '問題記載',
-          ProblemB: '問題記載',
-          ProblemC: '問題記載',
-          ProblemD: '問題記載',
-          ProblemE: '問題記載'
-        },
-        {
-          name: '問題',
-          ProblemA: '問題記載',
-          ProblemB: '問題記載',
-          ProblemC: '問題記載',
-          ProblemD: '問題記載',
-          ProblemE: '問題記載'
-        },
-        {
-          name: '問題',
-          ProblemA: '問題記載',
-          ProblemB: '問題記載',
-          ProblemC: '問題記載',
-          ProblemD: '問題記載',
-          ProblemE: '問題記載'
-        },
-        {
-          name: '問題',
-          ProblemA: '問題記載',
-          ProblemB: '問題記載',
-          ProblemC: '問題記載',
-          ProblemD: '問題記載',
-          ProblemE: '問題記載'
-        },
-        {
-          name: '問題',
-          ProblemA: '問題記載',
-          ProblemB: '問題記載',
-          ProblemC: '問題記載',
-          ProblemD: '問題記載',
-          ProblemE: '問題記載'
         }
       ]
     }
+  },
+  mounted: async function () {
+    axios
+      .get('/questions')
+      .then((response) => (
+        this.questionsData = response.data
+      ))
   }
 }
 </script>
