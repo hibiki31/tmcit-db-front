@@ -37,6 +37,17 @@
                   type="password"
                 ></v-text-field>
 
+                <v-text-field
+                  v-model="formData.password1"
+                  :rules="[rules.required]"
+                  id="password1"
+                  label="Confirm password"
+                  name="password1"
+                  prepend-icon="mdi-lock"
+                  required
+                  type="password"
+                ></v-text-field>
+
                 <v-checkbox v-model="formData.is_teacher" label="教員" />
 
               </v-card-text>
@@ -49,9 +60,7 @@
                   depressed
                   color="primary"
                   type="submit"
-                  v-on:click="this.doUserSignup"
-                  >Signup</v-btn
-                >
+                  >Signup</v-btn>
               </v-card-actions>
             </v-form>
           </v-card>
@@ -92,13 +101,28 @@ export default {
         password: this.formData.password,
         is_teacher: this.formData.is_teacher
       }
+
+      if (this.formData.password !== this.formData.password1) {
+        this.$_pushNotice('パスワードが一致しません', 'error')
+        return
+      }
+
       await axios.post('http://aray.hibiki.work/users', this.params, {
         headers: {
           accept: 'application/json',
           'content-type': 'application/json'
         }
       }).then((response) => {
+        if (response.status !== 200 && response.status !== 201) {
+          this.$_pushNotice('An error occurred', 'error')
+          return
+        }
+        this.$_pushNotice('アカウントが作成されました', 'success')
+        console.log('hello')
         this.apiData = response.data
+        this.$router.push(this.$route.query.redirect || { name: 'Login' })
+      }).catch(error => {
+        this.$_pushNotice(error.response.data.detail, 'error')
       })
     }
   }
