@@ -52,7 +52,6 @@
                 <v-btn
                   @click.prevent="doTeacherSignup"
                   :disabled="!isFormValid"
-                  :loading="isLoadingTeacherSignup"
                   depressed
                   color="primary"
                   type="submit"
