@@ -33,12 +33,11 @@ const mutations = {
     Cookies.remove('token')
     console.log('CookieとStoreを初期化しました')
     state.isLoaded = true
-    console.log(responseData)
     if (responseData !== null) {
       state.isAuthed = true
       state.token = responseData.access_token
       state.isAdmin = true
-      console.log('トークン格納', responseData.access_token)
+      console.log('トークン格納')
       Cookies.set('token', responseData.access_token)
     }
   },

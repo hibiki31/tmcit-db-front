@@ -79,15 +79,21 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  // 現在ログイン状態か
   const isAuthed = store.state.isAuthed
-  console.log(isAuthed)
-  if (isAuthed || to.matched.some(record => !record.meta.requiresAuth)) {
-    if ((to.name === 'Login' && isAuthed) || (to.name === 'Logout' && !isAuthed)) {
-      next({ name: 'Home' })
-    } else {
-      next()
-    }
+  // メターデータを小階層までしらべて認証が必要か調べる
+  const requeirtdAuth = to.matched.some(record => record.meta.requiresAuth)
+
+  // ログインしているのに，ログイン画面に行こうとした時
+  if (to.name === 'Login' && isAuthed) {
+    next({ name: 'Home' })
+  }
+
+  // 認証が必要ないか，ログイン済み
+  if ((!requeirtdAuth) || (requeirtdAuth && isAuthed)) {
+    next()
   } else {
+    // 認証が必要なのでログインに飛ばす
     next({ name: 'Login' })
   }
 })
