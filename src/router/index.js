@@ -79,6 +79,10 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to === undefined) {
+    next({ name: 'Home' })
+  }
+
   // 現在ログイン状態か
   const isAuthed = store.state.isAuthed
   // メターデータを小階層までしらべて認証が必要か調べる
