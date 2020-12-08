@@ -37,8 +37,7 @@
                   type="password"
                 ></v-text-field>
 
-                <input type="checkbox" id="checkbox" v-model="formData.is_teacher">
-                <label for="checkbox">is_teacher</label>
+                <v-checkbox v-model="formData.is_teacher" label="教員" />
 
               </v-card-text>
               <v-card-actions>
