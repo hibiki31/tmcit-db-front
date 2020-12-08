@@ -2,8 +2,7 @@
   <div>
     <v-dialog width="300" v-model="dialog">
       <v-card>
-        <v-card-title>ダイアログ</v-card-title>
-        <v-card-text>
+        <v-card-title>ダイアログ</v-card-title> <v-card-text>
           テンプレート
         </v-card-text>
         <v-card-actions>

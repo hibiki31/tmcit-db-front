@@ -13,12 +13,18 @@
    truncate-length="15"
    @change="fileinput"
   ></v-file-input>
+    <v-btn v-on:click="submit">
+      Submit
+    </v-btn>
   </v-container>
 </template>
 
 <script>
+import axios from '@/axios/index'
+
 export default {
   data: () => ({
+    questionId: 0,
     file: null,
     source: ''
   }),
@@ -33,6 +39,14 @@ export default {
           this.source = reader.result
         }
       }
+    },
+    submit () {
+      axios.post(`https://aray.hibiki.work/answers/${this.questionId}`, {
+        answer_str: this.source,
+        file_type: 0
+      }).then((res) => {
+        console.log(res.status)
+      })
     }
   }
 }
