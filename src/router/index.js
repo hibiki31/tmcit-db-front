@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/problem/:id',
     name: 'ProblemId',
-    component: () => import('../views/Problem.vue')
+    component: () => import('../views/ProblemDetail.vue')
   },
   {
     path: '/template',

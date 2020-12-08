@@ -1,5 +1,7 @@
 <template>
   <v-container fluid>
+    <h1>{{ questionTitle }}</h1>
+    <body-1>{{ questionBody }}</body-1>
   </v-container>
 </template>
 
@@ -10,22 +12,16 @@ export default {
   name: 'Template',
   data: function () {
     return {
-      apiData: [],
-      usersData: {},
-      dialog: false
+      questionId: 0,
+      questionTitle: '',
+      questionBody: '',
+      classId: 0,
+      questionDate: ''
     }
   },
   mounted: async function () {
-    axios
-      .get('https://ipinfo.io/json?token=24248f247e1965')
-      .then((response) => (
-        this.apiData = response.data
-      ))
-    axios
-      .get('/users')
-      .then((response) => (
-        this.usersData = response.data
-      ))
+    this.questionId = this.$route.params.id
+    axios.get(`https://aray.hibiki.work/questions/${this.questionId}`).then((response) => (this.data = response.data))
   },
   methods: {
     testFunction () {
