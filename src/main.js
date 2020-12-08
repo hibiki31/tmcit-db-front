@@ -27,7 +27,7 @@ const createApp = async () => {
   const token = Cookies.get('token')
 
   if (!token || token === 'undefined') {
-    console.log('トークンないぞ')
+    console.log('トークンは存在しません')
     store.dispatch('updateAuthState', null)
     if (router.app._route.name === 'Login' && router.app._route.query.redirect) {
       router.push({ name: 'Login' })
@@ -46,7 +46,7 @@ const createApp = async () => {
         if (router.app._route.name === 'Login') {
           router.push(router.app._route.query.redirect || { name: 'Home' })
         } else if (router.app._route.name === 'Logout') {
-          console.log('aaaa')
+          console.log('トークンが無効だったのでログアウト')
         }
       })
       .catch(() => {
