@@ -87,6 +87,11 @@ const routes = [
     }
   },
   {
+    path: '/teacher',
+    name: 'TeacherManager',
+    component: () => import('../views/TeacherManager.vue')
+  },
+  {
     path: '*',
     redirect: 'Home'
   }
