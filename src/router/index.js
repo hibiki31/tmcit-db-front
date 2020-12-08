@@ -30,6 +30,11 @@ const routes = [
     component: () => import('../views/Problem.vue')
   },
   {
+    path: '/problem/:id',
+    name: 'ProblemId',
+    component: () => import('../views/Problem.vue')
+  },
+  {
     path: '/template',
     name: 'Template',
     component: () => import('../views/Template.vue')

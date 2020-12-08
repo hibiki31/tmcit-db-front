@@ -1,34 +1,46 @@
 <template>
-
   <v-card class="pa-10">
-    <h1>
-      {{Input}}
-
-    </h1>
-<v-text-field
-      label="Main input"
-      :rules="rules"
-      hide-details="auto"
-    ></v-text-field>
-    <v-text-field v-model="Input" label="Another input"></v-text-field>
-    <v-btn
-      class="mx-2"
-      fab
-      dark
-      small
-      color="primary"
-    >
-       <v-icon dark>
-        mdi-minus
-      </v-icon>
-    </v-btn>
-
+    {{id}}
     <v-data-table
       :headers="headers"
       :items="problems"
       :items-per-page="10"
       class="elevation-1"
-    ></v-data-table>
+    >
+     <template v-slot:item.name="{ item }">
+     <v-btn :to="item.name">
+       {{item.name}}
+     </v-btn>
+     </template>
+     <template v-slot:item.ProblemA="{ item }">
+     <v-btn :to="item.ProblemA">
+       {{item.ProblemA}}
+     </v-btn>
+     </template>
+     <template v-slot:item.ProblemB="{ item }">
+     <v-btn :to="item.ProblemB">
+       {{item.ProblemB}}
+     </v-btn>
+     </template>
+     <template v-slot:item.ProblemC="{ item }">
+     <v-btn :to="item.ProblemC">
+       {{item.ProblemC}}
+     </v-btn>
+     </template>
+     <template v-slot:item.ProblemD="{ item }">
+     <v-btn :to="item.ProblemD">
+       {{item.ProblemD}}
+     </v-btn>
+     </template>
+     <template v-slot:item.ProblemE="{ item }">
+     <v-btn :to="item.ProblemE">
+       {{item.ProblemE}}
+     </v-btn>
+     </template>
+    </v-data-table>
+    <!-- <v-btn :to="{name: 'Submit'}" text>
+        <v-icon>Submit</v-icon>
+     </v-btn> -->
   </v-card>
 </template>
 
@@ -36,6 +48,7 @@
 export default {
   data () {
     return {
+      id: this.$route.params.id,
       headers: [
         {
           text: 'Problems',
@@ -51,6 +64,46 @@ export default {
       ],
       problems: [
         {
+          name: { name: 'ProblemId', params: { id: 'problem' } },
+          ProblemA: { name: 'ProblemId', params: { id: 'problem' } },
+          ProblemB: { name: 'ProblemId', params: { id: 'problem' } },
+          ProblemC: { name: 'ProblemId', params: { id: 'problem' } },
+          ProblemD: { name: 'ProblemId', params: { id: 'problem' } },
+          ProblemE: { name: 'ProblemId', params: { id: 'problem' } }
+        },
+        {
+          name: '問題',
+          ProblemA: '問題記載',
+          ProblemB: '問題記載',
+          ProblemC: '問題記載',
+          ProblemD: '問題記載',
+          ProblemE: '問題記載'
+        },
+        {
+          name: '問題',
+          ProblemA: '問題記載',
+          ProblemB: '問題記載',
+          ProblemC: '問題記載',
+          ProblemD: '問題記載',
+          ProblemE: '問題記載'
+        },
+        {
+          name: '問題',
+          ProblemA: '問題記載',
+          ProblemB: '問題記載',
+          ProblemC: '問題記載',
+          ProblemD: '問題記載',
+          ProblemE: '問題記載'
+        },
+        {
+          name: '問題',
+          ProblemA: '問題記載',
+          ProblemB: '問題記載',
+          ProblemC: '問題記載',
+          ProblemD: '問題記載',
+          ProblemE: '問題記載'
+        },
+        {
           name: '問題',
           ProblemA: '問題記載',
           ProblemB: '問題記載',
@@ -58,9 +111,7 @@ export default {
           ProblemD: '問題記載',
           ProblemE: '問題記載'
         }
-
-      ],
-      Input: 'ああああ'
+      ]
     }
   }
 }
