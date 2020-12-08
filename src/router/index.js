@@ -39,12 +39,26 @@ const routes = [
   {
     path: '/problem',
     name: 'Problem',
-    component: () => import('../views/Problem.vue')
+    component: () => import('../views/Problem.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/answer',
+    name: 'Answer',
+    component: () => import('../views/Answer.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/problem/:id',
     name: 'ProblemId',
-    component: () => import('../views/ProblemDetail.vue')
+    component: () => import('../views/ProblemDetail.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/template',
@@ -59,12 +73,18 @@ const routes = [
   {
     path: '/teacher/create-problem',
     name: 'CreateProblem',
-    component: () => import('../views/CreateProblem.vue')
+    component: () => import('../views/CreateProblem.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/teacher/signup',
     name: 'TeacherSignup',
-    component: () => import('../views/TeacherSignup.vue')
+    component: () => import('../views/TeacherSignup.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '*',

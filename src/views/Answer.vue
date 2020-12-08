@@ -1,7 +1,7 @@
 <template>
     <v-data-table
       :headers="headers"
-      :items="questionsData"
+      :items="data"
       :items-per-page="10"
       class="elevation-1"
     >
@@ -18,21 +18,18 @@ import axios from '@/axios/index'
 export default {
   data () {
     return {
-      apiData: [],
-      questionsData: [],
+      data: [],
       id: this.$route.params.id,
       headers: [
-        { text: '日付', value: 'question_date' },
-        { text: '問題', value: 'question_title' },
-        { text: '問題番号', value: 'question_id' }
+        { text: '答え', value: 'answers' }
       ]
     }
   },
   mounted: async function () {
     axios
-      .get('/questions')
+      .get('/answers')
       .then((response) => (
-        this.questionsData = response.data
+        this.data = response.data
       ))
   }
 }
