@@ -1,133 +1,53 @@
 <template>
-  <v-card flat>
-    <v-card-text>
-      <v-container fluid>
-        <v-row>
-          <v-col
-            cols="12"
-            sm="4"
-            md="4"
-          >
-            <v-checkbox
-              v-model="ex4"
-              label="red"
-              color="red"
-              value="red"
-              hide-details
-            ></v-checkbox>
-            <v-checkbox
-              v-model="ex4"
-              label="red darken-3"
-              color="red darken-3"
-              value="red darken-3"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-          <v-col
-            cols="12"
-            sm="4"
-            md="4"
-          >
-            <v-checkbox
-              v-model="ex4"
-              label="indigo"
-              color="indigo"
-              value="indigo"
-              hide-details
-            ></v-checkbox>
-            <v-checkbox
-              v-model="ex4"
-              label="indigo darken-3"
-              color="indigo darken-3"
-              value="indigo darken-3"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-          <v-col
-            cols="12"
-            sm="4"
-            md="4"
-          >
-            <v-checkbox
-              v-model="ex4"
-              label="orange"
-              color="orange"
-              value="orange"
-              hide-details
-            ></v-checkbox>
-            <v-checkbox
-              v-model="ex4"
-              label="orange darken-3"
-              color="orange darken-3"
-              value="orange darken-3"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-        </v-row>
-
-        <v-row class="mt-12">
-          <v-col
-            cols="12"
-            sm="4"
-            md="4"
-          >
-            <v-checkbox
-              v-model="ex4"
-              label="primary"
-              color="primary"
-              value="primary"
-              hide-details
-            ></v-checkbox>
-            <v-checkbox
-              v-model="ex4"
-              label="secondary"
-              color="secondary"
-              value="secondary"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-          <v-col
-            cols="12"
-            sm="4"
-            md="4"
-          >
-            <v-checkbox
-              v-model="ex4"
-              label="success"
-              color="success"
-              value="success"
-              hide-details
-            ></v-checkbox>
-            <v-checkbox
-              v-model="ex4"
-              label="info"
-              color="info"
-              value="info"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-          <v-col
-            cols="12"
-            sm="4"
-            md="4"
-          >
-            <v-checkbox
-              v-model="ex4"
-              label="warning"
-              color="warning"
-              value="warning"
-              hide-details
-            ></v-checkbox>
-            <v-checkbox
-              v-model="ex4"
-              label="error"
-              color="error"
-              value="error"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card-text>
-  </v-card>
+  <v-container fluid>
+    <v-textarea
+      auto-grow
+      v-model="source"
+      name="source-input"
+      label="ソースコードの提出"
+      hint="Hint text"
+      :value="file"
+    >{{ file }}</v-textarea>
+  <v-file-input
+   v-model="file"
+   truncate-length="15"
+   @change="fileinput"
+  ></v-file-input>
+    <v-btn v-on:click="submit">
+      Submit
+    </v-btn>
+  </v-container>
 </template>
+
+<script>
+import axios from '@/axios/index'
+
+export default {
+  data: () => ({
+    questionId: 0,
+    file: null,
+    source: ''
+  }),
+  methods: {
+    fileinput () {
+      console.log(this.file)
+      if (!this.file) this.source = 'No File Data'
+      else {
+        const reader = new FileReader()
+        reader.readAsText(this.file)
+        reader.onload = () => {
+          this.source = reader.result
+        }
+      }
+    },
+    submit () {
+      axios.post(`https://aray.hibiki.work/answers/${this.questionId}`, {
+        answer_str: this.source,
+        file_type: 0
+      }).then((res) => {
+        console.log(res.status)
+      })
+    }
+  }
+}
+</script>
