@@ -3,7 +3,7 @@
       {{questionsData}}
     <v-data-table
       :headers="headers"
-      :items="problems"
+      :items="questionsData"
       :items-per-page="10"
       class="elevation-1"
     >
@@ -11,7 +11,7 @@
      <v-btn :to="item.name">
        {{item.name}}
      </v-btn>
-     </template> -->
+     </template>
      <template v-slot:item.ProblemA="{ item }">
      <v-btn :to="item.ProblemA">
        {{item.ProblemA}}
@@ -36,7 +36,7 @@
      <v-btn :to="item.ProblemE">
        {{item.ProblemE}}
      </v-btn>
-     </template>
+     </template> -->
     </v-data-table>
   </v-card>
 </template>
@@ -47,24 +47,29 @@ export default {
   data () {
     return {
       apiData: [],
-      questiondata: {},
+      questionsData: [],
       id: this.$route.params.id,
       headers: [
-        {
-          text: 'Problems',
-          align: 'start',
-          sortable: false,
-          value: 'name'
-        },
-        { text: 'A', value: 'ProblemA' },
-        { text: 'B', value: 'ProblemB' },
-        { text: 'C', value: 'ProblemC' },
-        { text: 'D', value: 'ProblemD' },
-        { text: 'E', value: 'ProblemE' }
+        { text: '日付', value: 'question_date' },
+        { text: '問題', value: 'question_title' },
+        { text: '問題番号', value: 'question_id' },
+        { text: '問題文', value: 'question_body' }
+        // {
+
+        //   text: 'Problems',
+        //   align: 'start',
+        //   sortable: false,
+        //   value: 'name'
+        // },
+        // { text: 'A', value: 'question_title' },
+        // { text: 'B', value: 'ProblemB' },
+        // { text: 'C', value: 'ProblemC' },
+        // { text: 'D', value: 'ProblemD' },
+        // { text: 'E', value: 'ProblemE' }
       ],
       problems: [
         {
-          name: { name: 'ProblemId', params: { id: 'problem' } },
+          name: { name: 'question_title', params: { id: 'hello world' } },
           ProblemA: { name: 'ProblemId', params: { id: 'problem' } },
           ProblemB: { name: 'ProblemId', params: { id: 'problem' } },
           ProblemC: { name: 'ProblemId', params: { id: 'problem' } },
