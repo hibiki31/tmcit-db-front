@@ -56,7 +56,6 @@
                 <v-btn
                   @click.prevent="doUserSignup"
                   :disabled="!isFormValid"
-                  :loading="isLoadingUserSignup"
                   depressed
                   color="primary"
                   type="submit"
