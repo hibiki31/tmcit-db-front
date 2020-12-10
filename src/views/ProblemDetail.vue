@@ -1,7 +1,8 @@
 <template>
   <v-container fluid>
-    <h1>{{ questionTitle }}</h1>
-    <body-1>{{ questionBody }}</body-1>
+    <h1>{{ question.question_title }}</h1>
+    <div class="text-body-1">hello</div>
+    <body-1>{{ question.question_body }}</body-1>
     <v-textarea
       auto-grow
       v-model="source"
@@ -24,13 +25,13 @@
 import axios from '@/axios/index'
 
 export default {
-  name: 'Template',
+  name: 'ProblemDetail',
   data: function () {
     return {
       questionId: 0,
       question: {
-        title: '',
-        body: ''
+        question_title: '',
+        question_body: ''
       },
       answer: {
         answer_type: 0
@@ -43,7 +44,10 @@ export default {
   },
   mounted: async function () {
     this.questionId = this.$route.params.id
-    axios.get(`/questions/${this.questionId}`).then((response) => (this.question = response.data))
+    axios.get(`/questions/${this.questionId}`).then((response) => {
+      this.question = response.data
+      console.log(this.question)
+    })
   },
   methods: {
     fileinput () {
