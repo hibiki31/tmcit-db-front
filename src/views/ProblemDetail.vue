@@ -1,8 +1,7 @@
 <template>
   <v-container fluid>
     <h1>{{ question.question_title }}</h1>
-    <div class="text-body-1">hello</div>
-    <body-1>{{ question.question_body }}</body-1>
+    <div class="text-body-1">{{ question.question_body }}</div>
     <v-textarea
       auto-grow
       v-model="source"
@@ -10,11 +9,11 @@
       label="ソースコードの提出"
       hint="Hint text"
       :value="file">{{ file }}</v-textarea>
-  <v-file-input
-   v-model="file"
-   truncate-length="15"
-   @change="fileinput"
-  ></v-file-input>
+    <v-file-input
+    v-model="file"
+    truncate-length="15"
+    @change="fileinput"
+    ></v-file-input>
     <v-btn v-on:click="submit">
       Submit
     </v-btn>
@@ -62,7 +61,6 @@ export default {
       }
     },
     submit () {
-      this.questionId = this.$store.params.id
       axios.post(`/answers/${this.questionId}`, {
         answer_str: this.source,
         file_type: 0
