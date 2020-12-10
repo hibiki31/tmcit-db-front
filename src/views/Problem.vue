@@ -22,8 +22,8 @@ export default {
       questionsData: [],
       id: this.$route.params.id,
       headers: [
-        { text: '日付', value: 'question_date' },
         { text: '問題', value: 'question_title' },
+        { text: '日付', value: 'question_date' },
         { text: '問題番号', value: 'question_id' }
       ]
     }
@@ -31,9 +31,14 @@ export default {
   mounted: async function () {
     axios
       .get('/questions')
-      .then((response) => (
+      .then((response) => {
+        const parseDate = x => x.split(/[^0-9]/, 3).reduce((a, b) => a + '/' + b)
         this.questionsData = response.data
-      ))
+        console.log(this.questionsData)
+        for (var i = 0; i < this.questionsData.length; i++) {
+          this.questionsData[i].question_date = parseDate(this.questionsData[i].question_date)
+        }
+      })
   }
 }
 </script>
