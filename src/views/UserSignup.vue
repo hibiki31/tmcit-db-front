@@ -52,6 +52,11 @@
 
               </v-card-text>
               <v-card-actions>
+                <v-btn
+                  @click.prevent="doLogin"
+                  depressed
+                  color="primary"
+                  >Login</v-btn>
                 <v-spacer></v-spacer>
                 <v-btn
                   @click.prevent="doUserSignup"
@@ -123,6 +128,10 @@ export default {
       }).catch(error => {
         this.$_pushNotice(error.response.data.detail, 'error')
       })
+    },
+
+    async doLogin () {
+      this.$router.push(this.$route.query.redirect || { name: 'Login' })
     }
   }
 }

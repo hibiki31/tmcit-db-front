@@ -32,6 +32,12 @@
                 ></v-text-field>
               </v-card-text>
               <v-card-actions>
+                <v-btn
+                  @click.prevent="doSignUp"
+                  depressed
+                  color="primary"
+                  >SignUp</v-btn
+                >
                 <v-spacer></v-spacer>
                 <v-btn
                   @click.prevent="doLogin"
@@ -107,6 +113,10 @@ export default {
           this.$_pushNotice(error.response.data.detail, 'error')
         })
       this.isLoadingLogin = false
+    },
+
+    async doSignUp () {
+      this.$router.push(this.$route.query.redirect || { name: 'UserSignup' })
     }
   }
 }
