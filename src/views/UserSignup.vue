@@ -106,7 +106,7 @@ export default {
         return
       }
 
-      await axios.post('http://aray.hibiki.work/users', this.params, {
+      await axios.post('/users', this.params, {
         headers: {
           accept: 'application/json',
           'content-type': 'application/json'

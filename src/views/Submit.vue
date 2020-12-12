@@ -41,7 +41,7 @@ export default {
       }
     },
     submit () {
-      axios.post(`https://aray.hibiki.work/answers/${this.questionId}`, {
+      axios.post(`/answers/${this.questionId}`, {
         answer_str: this.source,
         file_type: 0
       }).then((res) => {
